@@ -2,16 +2,16 @@
 
 // https://www.npmjs.com/package/dotenv
 // https://github.com/motdotla/dotenv/issues/133#issuecomment-255298822
-import dotenv from 'dotenv';
+import {parse} from 'dotenv';
 import fs from 'fs';
 import path from 'path';
 import minimist from 'minimist';
 import { fileURLToPath } from 'url';
 
 
-// https://nodejs.org/api/esm.html#esm_no_require_exports_module_exports_filename_dirname
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
+ // https://nodejs.org/api/esm.html#esm_no_require_exports_module_exports_filename_dirname
+  // const __filename = fileURLToPath(import.meta.url);
+  // const __dirname = path.dirname(__filename);
 const getPath = (p = '.') => path.resolve(__dirname, p);
 
 
@@ -34,7 +34,7 @@ Object.entries(minimist(process.argv.slice(2)))
 
 // only apply environment variables for the matching env
 // sorry 12-factor!
-const newEnv = Object.entries(dotenv.parse(fs.readFileSync('./.env')))
+const newEnv = Object.entries(parse(fs.readFileSync('./.env')))
   .filter(([k, v]) => k.includes(process.env.NODE_ENV))
   .reduce((env, [k, v]) => ({
       ...env,
@@ -43,7 +43,9 @@ const newEnv = Object.entries(dotenv.parse(fs.readFileSync('./.env')))
     baseEnv
   );
 
-console.log('\n\n env is', newEnv)
+
+console.log('\n\n new env', newEnv)
+
 // apply all to process env
 // webpack define plugin is
 // responsible for picking which ones to provide in compiled code

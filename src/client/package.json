@@ -1,10 +1,12 @@
 {
   "name": "@techscreen/client",
   "version": "0.0.1",
-  "main": "main.js",
   "private": true,
   "description": "UI and back-end for front-end",
   "scripts": {
-    "dev": "NODE_ENV=development node --trace-deprecation main.js"
+    "predev":"stylelint './ui/**/*.js'",
+    "dev": "NODE_ENV=development node --trace-deprecation ./main.js",
+    "prod": "NODE_ENV=production node ./main.js"
   }
 }
+

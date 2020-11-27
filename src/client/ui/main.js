@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-export const App = () => <h1>bare-bones fullstacksss</h1>;
+export const App = () => <h1>bare-bones fullstack</h1>;
 
 const render = (Comp) => {
   ReactDOM.render(

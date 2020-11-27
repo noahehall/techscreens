@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "description": "base api",
-  "main": "routes/index.js",
   "scripts": {
-    "dev": "NODE_ENV=development node --trace-deprecation main.js"
+    "dev": "NODE_ENV=development node --trace-deprecation ./main.js",
+    "prod": "NODE_ENV=production node ./main.js"
   }
 }

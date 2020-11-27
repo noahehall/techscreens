@@ -58,13 +58,15 @@ const launchAndLoadServer = (outputFilePath, clientConfig) => {
     const newModule = require(outputFilePath);
 
     // only tracking servers
-    if (newModule.default.isServer)
+    if (newModule.default?.isServer)
       servers.set(outputFilePath, newModule.default);
 
     // exit if no additional process required
-    if (!clientConfig) return;
+    if (!clientConfig || !newModule.default?.app) return;
 
     const app = newModule.default.app;
+
+    if (!app) throw 'cannot attach client app to BFF';
 
     const compiler = webpack(clientConfig);
     const middleware = createWebpackMiddleware(
@@ -138,10 +140,57 @@ const watchAndRun = ({
   const watching = compiler.watch(opts, (e, s) => cb(e, s, clientConfig ));
 };
 
+const build = ({
+  clientConfig, // only used when adding to BFF
+  config,
+}) => {
+  const confs = [config];
+  if (clientConfig) confs.push(clientConfig)
+
+  webpack(confs, (err, stats) => {
+    if (err) {
+      console.error(err.stack || err);
+      if (err.details) {
+        console.error(err.details);
+      }
+      return;
+    }
+
+    const info = stats.toJson();
+
+    if (stats.hasErrors()) {
+      console.error(info.errors);
+    }
+
+    if (stats.hasWarnings()) {
+      console.warn(info.warnings);
+    }
+
+
+  });
+}
+
+const run = (opts) => {
+  switch (process.env.NODE_ENV) {
+    case 'production': {
+      build(opts);
+
+      break;
+    }
+
+    default: {
+      watchAndRun(opts);
+
+      break;
+    }
+  }
+}
 module.exports = {
+  build,
   compileStatsOpts,
   launchAndLoadServer,
   reloadServer,
+  run,
   runCompilationFiles,
   servers,
   watchAndRun,
