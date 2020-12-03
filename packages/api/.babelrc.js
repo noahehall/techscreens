@@ -4,6 +4,6 @@ module.exports = function (api) {
   api.cache(true);
 
   return {
-    extends: process.env.appTools + '/babel/babelNodeConfig.js',
+    extends: process.env.NIRV_APP_TOOLS + '/babel/babelNodeConfig.js',
   }
 }

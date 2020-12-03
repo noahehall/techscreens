@@ -32,7 +32,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 
 
 
-const addPath = (p = '.') => path.resolve(env.appRoot, p);
+const addPath = (p = '.') => path.resolve(env.NIRV_APP_ROOT, p);
 const jsRegex = /\.(js|cjs|mjs|jsx)$/;
 
 function isR (name) {
@@ -55,7 +55,7 @@ module.exports = function ({
   plugins = [],
   resolve = {
     alias: {},
-    modules: [process.env.appRoot, 'node_modules'],
+    modules: [process.env.NIRV_APP_ROOT, 'node_modules'],
     preferRelative: true,
     extensions: ['*', '.js', '.mjs', '.cjs', '.jsx', '.json'],
   }, // https://github.com/webpack/webpack/issues/981
@@ -73,14 +73,14 @@ module.exports = function ({
 
 
   const appEnv = {
-          'process.env.appDist': JSON.stringify(env['appDist']),
-          'process.env.appRoot': JSON.stringify(env['appRoot']),
-          'process.env.appTools': JSON.stringify(env['appTools']),
-          'process.env.appSrc': JSON.stringify(env['appSrc']),
-          'process.env.BFF_HOST': JSON.stringify(env['BFF_HOST']),
-          'process.env.BFF_PORT': JSON.stringify(env['BFF_PORT']),
-          'process.env.API_HOST': JSON.stringify(env['API_HOST']),
-          'process.env.API_PORT': JSON.stringify(env['API_PORT']),
+          'process.env.NIRV_APP_DIST': JSON.stringify(env['NIRV_APP_DIST']),
+          'process.env.NIRV_APP_ROOT': JSON.stringify(env['NIRV_APP_ROOT']),
+          'process.env.NIRV_APP_TOOLS': JSON.stringify(env['NIRV_APP_TOOLS']),
+          'process.env.NIRV_APP_SRC': JSON.stringify(env['NIRV_APP_SRC']),
+          'process.env.NIRV_BFF_HOST': JSON.stringify(env['NIRV_BFF_HOST']),
+          'process.env.NIRV_BFF_PORT': JSON.stringify(env['NIRV_BFF_PORT']),
+          'process.env.NIRV_API_HOST': JSON.stringify(env['NIRV_API_HOST']),
+          'process.env.NIRV_API_PORT': JSON.stringify(env['NIRV_API_PORT']),
         };
 
 
@@ -97,7 +97,7 @@ module.exports = function ({
   // sets the final output
   const getOutput = (useTarget = target) => ({
     publicPath: publicPath,
-    path: `${env.appDist}/${providedOptions.name}`,
+    path: `${env.NIRV_APP_DIST}/${providedOptions.name}`,
      pathinfo: ifDev,
     filename,
     chunkFilename,
@@ -141,7 +141,7 @@ module.exports = function ({
       target,
       devtool: ifProd ? 'source-map' : 'eval-cheap-module-source-map',
       mode,
-      context: env.appSrc,
+      context: env.NIRV_APP_SRC,
       entry,
   };
 
@@ -149,7 +149,7 @@ module.exports = function ({
     case 'node': {
       options.externals = [webpackNodeExternals({
         modulesFromFile: {
-          fileName: process.env.appRoot + '/package.json'
+          fileName: process.env.NIRV_APP_ROOT + '/package.json'
         }
       })]
       break;
@@ -221,7 +221,7 @@ module.exports = function ({
             /node_modules/,
             /node_modules[\\\/]core-js/,
           ],
-           // include: [ env.appSrc ],
+           // include: [ env.NIRV_APP_SRC ],
           use: [
             'thread-loader',
             {

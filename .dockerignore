@@ -20,6 +20,5 @@ git.sublime*
 
 
 # exceptions
-!.env
 Dockerfile*
 .dockerignore

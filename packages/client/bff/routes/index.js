@@ -21,7 +21,7 @@ app.get('*', (req, res, next) => {
 // https://github.com/expressjs/express/blob/master/examples/multi-router/index.js
 let server;
 if (!module.parent) {
-  server = app.listen(process.env.BFF_PORT, () => console.log('\n\n BFF running', process.env.BFF_PORT, process.env.appDist));
+  server = app.listen(process.env.NIRV_BFF_PORT, () => console.log('\n\n BFF running', process.env.NIRV_BFF_PORT, process.env.appDist));
 }
 
 

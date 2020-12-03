@@ -1,20 +1,27 @@
-# Don't check auto-generated stuff into git
-coverage
-build
-dist
-node_modules
-stats.json
-.tags*
+
+**/.parcel-cache/**
+*cache/**
+*.parcel*
 *.sublime-project
 *.sublime-workspace
-
-# Cruft
-.DS_Store
-npm-debug.log
-.idea
-.env
-*.parcel*
-*.cache
-**/.parcel-cache/**
 *parcel*
+.DS_Store
+.env
+.idea
+.tags*
+build
+coverage
+dist
 git.sublime*
+node_modules
+npm-debug.log
+stats.json
+
+# yarn berry
+**.yarn/
+!.pnp.*
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+!*/build-state.yml
+!*/install-state.gz
