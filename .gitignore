@@ -5,6 +5,7 @@
 *.sublime-project
 *.sublime-workspace
 *parcel*
+.logs
 .DS_Store
 .env
 .idea
