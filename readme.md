@@ -29,3 +29,28 @@
   - sh: `docker exec -it techscreens sh`
   - - delete danging images: docker image prune
   - delete all containers docker rm $(docker ps -a -f status=exited -q)
+
+
+# eventually will need
+## yarn
+  - upgraded to yarn berry locally
+    - have to run `yarn set version berry` in the root package
+    - [figure this shit out later](https://yarnpkg.com/features/zero-installs)
+    - [use colons in script names](https://yarnpkg.com/getting-started/qa#How-to-share-scripts-between-workspaces)
+  - yarn bin #get the path to the yarn executable
+  - yarn --cwd <command> #set the working directory for running the command, great for not having to cd then cd--
+  - yarn cache list <pattern> #find packages not in cache
+  - yarn cache dir # print path of global cache
+  - yarn global bin # print path of global install dir, this is where global packages will have their executables installed
+  - yarn global dir #print path of the global dir
+  -- yarn install --modules-folder <path>
+  -- yarn install --production true
+  -- yarn install --focus
+  -- yarn install --silent
+  -- yarn install --non-interactive
+  -- yarn pack #creates a tarball of package root without unecessary fiels
+    - use this to package app dir before moving it into a multi-stage docker build, helps control the cache
+    - creates a 
+  -- yarn install --focus # install a workspace packages deps and remove all symlinks
+      - very useful for automating bundling of a package for deployment while still having symlinks in dev
+      - running `yarn install` without the focus will return to their unfocused state

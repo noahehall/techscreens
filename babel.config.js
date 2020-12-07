@@ -12,8 +12,8 @@
 
 const path = require('path');
 const pkg = require('./package.json');
-const babelNodeConfig = import('./tools/babel/babelNodeConfig.js');
-const babelWebConfig = import('./tools/babel/babelWebConfig.js');
+const babelNodeConfig = require('./tools/babel/babelNodeConfig.js');
+const babelWebConfig = require('./tools/babel/babelWebConfig.js');
 
 
 module.exports = function (api) {
@@ -27,6 +27,7 @@ module.exports = function (api) {
   const presets = [
 
   ];
+
 
 // RUNS FIRST TO LAST
   const plugins = [
@@ -44,11 +45,11 @@ module.exports = function (api) {
       {
         'extensions': ['.js', '.es6', '.mjs', '.cjs', '.json'],
          // stripExtensions: [],
-        cwd: process.env.appRoot,
+        cwd: process.env.NIRV_APP_ROOT,
          root: ['.'],
         loglevel: 'info',
         alias: {
-          appRoot: process.env.appRoot,
+          appRoot: process.env.NIRV_APP_ROOT,
           appSrc: './src',
           appTools: './tools',
           appDist: './dist',
@@ -63,11 +64,6 @@ module.exports = function (api) {
          //    // noInterop: true,
          //    strict: true,
          // }],
-
-
-
-
-
 
 
     // 'lodash',
@@ -87,10 +83,6 @@ module.exports = function (api) {
      '@babel/plugin-syntax-dynamic-import',
     '@babel/plugin-proposal-optional-catch-binding',
     'transform-export-extensions',
-
-
-
-
   ];
 
 
@@ -107,6 +99,8 @@ module.exports = function (api) {
 
     }
   ]
+
+  console.log('\n\n wtf should be loading')
   return {
 
     presets,

@@ -1,7 +1,7 @@
 'use strict';
 
-// import './.envConfig.js';
-import { spawn } from 'child_process';
+
+import { spawn, fork } from 'child_process';
 import readline from 'readline';
 
 
@@ -21,18 +21,19 @@ const getDefaultCmd = () => {
 const defaultCmd = getDefaultCmd();
 
 const createInitConfig = ({ name, cwd, cmd = defaultCmd, ...rest }) => {
+  const opts ={
+    ...rest,
+    ...defaultOptions,
+    cwd,
+     };
+
   switch (name) {
-    default: return {
-      ...rest,
+    default: return console.log('\n\n caling fn') || {
       name,
       p: spawn(
-        'yarn',
+        'yarn run',
         [cmd],
-        Object.assign(
-          {},
-          defaultOptions,
-          { cwd },
-        )
+        opts
       )
     }
   };
@@ -41,12 +42,12 @@ const createInitConfig = ({ name, cwd, cmd = defaultCmd, ...rest }) => {
 // service configuration
 const serviceConfigs = {
   api: {
-    cwd: process.env.appSrc + '/api',
+    cwd: process.env.NIRV_APP_SRC + '/api',
     name: 'api',
   },
 
   client: {
-    cwd: process.env.appSrc + '/client',
+    cwd: process.env.NIRV_APP_SRC + '/client',
     name: 'client',
   },
 }
@@ -54,6 +55,7 @@ const serviceConfigs = {
 // run a single service, or all
 const s = serviceConfigs[process.env.npm_package_config_s];
 const services =  s ? [s] : Object.values(serviceConfigs);
+
 
 // run
 services.map(service => createInitConfig(service)).forEach(child => {
