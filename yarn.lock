@@ -764,7 +764,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-syntax-typescript@npm:^7.12.1":
+"@babel/plugin-syntax-typescript@npm:^7.12.1, @babel/plugin-syntax-typescript@npm:^7.3.3":
   version: 7.12.1
   resolution: "@babel/plugin-syntax-typescript@npm:7.12.1"
   dependencies:
@@ -1238,7 +1238,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-transform-typescript@npm:^7.12.1":
+"@babel/plugin-transform-typescript@npm:7.12.1, @babel/plugin-transform-typescript@npm:^7.12.1":
   version: 7.12.1
   resolution: "@babel/plugin-transform-typescript@npm:7.12.1"
   dependencies:
@@ -2411,6 +2411,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"babel-plugin-const-enum@npm:1.0.1":
+  version: 1.0.1
+  resolution: "babel-plugin-const-enum@npm:1.0.1"
+  dependencies:
+    "@babel/helper-plugin-utils": ^7.0.0
+    "@babel/plugin-syntax-typescript": ^7.3.3
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: d054ef714ab6df3c856941daf7f8f23b70a794a70ec33d6259ef46a92f4067eabfe744280503f4e497341c6dc12fe9412f39073ec9368c754b4c974f775757da
+  languageName: node
+  linkType: hard
+
 "babel-plugin-dynamic-import-node@npm:2.3.3, babel-plugin-dynamic-import-node@npm:^2.3.3":
   version: 2.3.3
   resolution: "babel-plugin-dynamic-import-node@npm:2.3.3"
@@ -2443,6 +2455,13 @@ __metadata:
     reselect: ^4.0.0
     resolve: ^1.13.1
   checksum: ac50e01ef09f1dc506e250e852dcfb49c0cd0e7e5bf02b3f3d1de7c51ccda8bf34fa63bc9a698c098004a15d91efcc65517397ae90209c9c23b7778b83235ce3
+  languageName: node
+  linkType: hard
+
+"babel-plugin-replace-ts-export-assignment@npm:0.0.2":
+  version: 0.0.2
+  resolution: "babel-plugin-replace-ts-export-assignment@npm:0.0.2"
+  checksum: e705f7b02b39e6198f4f49f0019954507aa3afb577b3d6209f6745f907b25d4300eb21d4687d46e9250a02fdea936ab081aa1665b34ef9b1905e702fa2844f88
   languageName: node
   linkType: hard
 
@@ -9959,6 +9978,7 @@ __metadata:
     "@babel/plugin-transform-react-constant-elements": 7.12.1
     "@babel/plugin-transform-react-inline-elements": 7.12.1
     "@babel/plugin-transform-runtime": 7.12.1
+    "@babel/plugin-transform-typescript": 7.12.1
     "@babel/preset-env": 7.12.7
     "@babel/preset-react": 7.12.7
     "@babel/preset-typescript": 7.12.7
@@ -9967,9 +9987,11 @@ __metadata:
     "@babel/traverse": 7.12.9
     "@types/source-map-support": ^0
     babel-loader: 8.2.2
+    babel-plugin-const-enum: 1.0.1
     babel-plugin-dynamic-import-node: 2.3.3
     babel-plugin-lodash: 3.3.4
     babel-plugin-module-resolver: 4.0.0
+    babel-plugin-replace-ts-export-assignment: 0.0.2
     babel-plugin-source-map-support: 2.1.3
     babel-plugin-tailcall-optimization: 2.0.0
     babel-plugin-transform-export-extensions: 6.22.0

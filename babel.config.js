@@ -25,14 +25,27 @@ module.exports = function (api) {
 
   // runs the last item first
   const presets = [
-
+    [
+      "@babel/preset-typescript", {
+        isTSX: true
+        allExtensions: true,
+        allowNamespaces: true,
+      }
+    ]
   ];
 
 
 // RUNS FIRST TO LAST
   const plugins = [
+  'const-enum', // must come efore transform typescript
+  [ // https://babeljs.io/docs/en/babel-plugin-transform-typescript
+    '@babel/plugin-transform-typescript', {
+      allowDeclareFields: true
+    }
+  ],
+    'babel-plugin-replace-ts-export-assignment'
   [
-      '@babel/plugin-transform-runtime', {
+    '@babel/plugin-transform-runtime', {
         corejs: 3,
         absoluteRuntime: false,
           // useESModules: true,
@@ -102,7 +115,7 @@ module.exports = function (api) {
 
   console.log('\n\n wtf should be loading')
   return {
-
+    strictMode: true,
     presets,
     plugins,
     overrides,

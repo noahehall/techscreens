@@ -22,7 +22,8 @@ stats.json
 **.yarn/
 !.pnp.*
 !.yarn/releases
+!.yarn/plugins
 !.yarn/sdks
 !.yarn/versions
-!*/build-state.yml
-!*/install-state.gz
+!**/build-state.yml
+!**/install-state.gz
