@@ -177,7 +177,14 @@ module.exports = function ({
         cleanStaleWebpackAssets: ifProd,
         protectWebpackAssets: false,
       }),
-      new ForkTsCheckerWebpackPlugin(),
+      new ForkTsCheckerWebpackPlugin({
+        typescript: {
+          diagnosticOptions: {
+            semantic: true,
+            syntactic: true,
+          },
+        },
+      }),
       new ForkTsCheckerNotifierWebpackPlugin({ excludeWarnings: true }), // must come after the other fork plugin
       new webpack.DefinePlugin(  
         // make these available in compiled code
@@ -219,25 +226,6 @@ module.exports = function ({
         //   }
         // },
 
-        // load all ts files
-        {
-          test: /\.tsx?$/,
-          use: 'ts-loader',
-          exclude: /node_modules/,
-          options: {
-            // disable type checker - we will use it in fork plugin
-            transpileOnly: true,
-            eslint: false,
-            async: true,
-            logger: 'console',
-            typescript: false, // using the forked plugin
-            extensions: {
-
-            }
-
-
-          }
-        },
         {
           test: jsRegex,
           exclude: [

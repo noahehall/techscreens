@@ -59,3 +59,4 @@
 
 # npm 
   - had to change to my npm global dir to setup typescript https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally
+  - tyescript config: https://github.com/microsoft/TypeScript-Babel-Starter/blob/master/tsconfig.json

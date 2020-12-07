@@ -744,7 +744,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-syntax-typescript@npm:^7.12.1, @babel/plugin-syntax-typescript@npm:^7.3.3":
+"@babel/plugin-syntax-typescript@npm:^7.12.1":
   version: 7.12.1
   resolution: "@babel/plugin-syntax-typescript@npm:7.12.1"
   dependencies:
@@ -1218,7 +1218,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-transform-typescript@npm:^7.12.1":
+"@babel/plugin-transform-typescript@npm:7.12.1, @babel/plugin-transform-typescript@npm:^7.12.1":
   version: 7.12.1
   resolution: "@babel/plugin-transform-typescript@npm:7.12.1"
   dependencies:
@@ -1787,7 +1787,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/webpack@npm:^4.4.31, @types/webpack@npm:^4.41.8":
+"@types/webpack@npm:4.41.25, @types/webpack@npm:^4.4.31, @types/webpack@npm:^4.41.8":
   version: 4.41.25
   resolution: "@types/webpack@npm:4.41.25"
   dependencies:
@@ -2402,18 +2402,6 @@ __metadata:
     "@babel/core": ^7.0.0
     webpack: ">=2"
   checksum: 362bb715736abec0162bdf8dc2a523a09c46c7b14aef13d9c6548ff609b8cb3879129822a5096401cd955230d836bde19037d9cbebeced940d5348c64959bec3
-  languageName: node
-  linkType: hard
-
-"babel-plugin-const-enum@npm:1.0.1":
-  version: 1.0.1
-  resolution: "babel-plugin-const-enum@npm:1.0.1"
-  dependencies:
-    "@babel/helper-plugin-utils": ^7.0.0
-    "@babel/plugin-syntax-typescript": ^7.3.3
-  peerDependencies:
-    "@babel/core": ^7.0.0-0
-  checksum: d054ef714ab6df3c856941daf7f8f23b70a794a70ec33d6259ef46a92f4067eabfe744280503f4e497341c6dc12fe9412f39073ec9368c754b4c974f775757da
   languageName: node
   linkType: hard
 
@@ -10108,6 +10096,7 @@ __metadata:
     "@babel/plugin-transform-react-constant-elements": 7.12.1
     "@babel/plugin-transform-react-inline-elements": 7.12.1
     "@babel/plugin-transform-runtime": 7.12.1
+    "@babel/plugin-transform-typescript": 7.12.1
     "@babel/preset-env": 7.12.7
     "@babel/preset-react": 7.12.7
     "@babel/preset-typescript": 7.12.7
@@ -10116,8 +10105,8 @@ __metadata:
     "@babel/traverse": 7.12.9
     "@tsconfig/recommended": 1.0.1
     "@types/source-map-support": ^0
+    "@types/webpack": 4.41.25
     babel-loader: 8.2.2
-    babel-plugin-const-enum: 1.0.1
     babel-plugin-dynamic-import-node: 2.3.3
     babel-plugin-lodash: 3.3.4
     babel-plugin-module-resolver: 4.0.0
