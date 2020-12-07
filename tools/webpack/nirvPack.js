@@ -57,7 +57,7 @@ module.exports = function ({
     alias: {},
     modules: [process.env.NIRV_APP_ROOT, 'node_modules'],
     preferRelative: true,
-    extensions: ['*', '.js', '.mjs', '.cjs', '.jsx', '.json'],
+    extensions: ['*', '.ts', '.tsx', '.js', '.mjs', '.cjs', '.jsx', '.json'],
   }, // https://github.com/webpack/webpack/issues/981
 
   mode = env.NODE_ENV === 'development' ? 'development' : 'production',
@@ -215,6 +215,13 @@ module.exports = function ({
         //     fullySpecified: false // disable the behaviour
         //   }
         // },
+        
+        // load all ts files
+        {
+          test: /\.tsx?$/,
+          use: 'ts-loader',
+          exclude: /node_modules/,
+        },
         {
           test: jsRegex,
           exclude: [

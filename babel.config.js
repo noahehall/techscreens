@@ -27,7 +27,7 @@ module.exports = function (api) {
   const presets = [
     [
       "@babel/preset-typescript", {
-        isTSX: true
+        isTSX: true,
         allExtensions: true,
         allowNamespaces: true,
       }
@@ -38,7 +38,11 @@ module.exports = function (api) {
 // RUNS FIRST TO LAST
   const plugins = [
   'const-enum', // must come efore transform typescript
-  [ // https://babeljs.io/docs/en/babel-plugin-transform-typescript
+
+  [ 
+    // https://babeljs.io/docs/en/babel-plugin-transform-typescript
+    // doesnt do type checking, disabled
+    // went with ts-loader with webpack
     '@babel/plugin-transform-typescript', {
       allowDeclareFields: true
     }
@@ -56,7 +60,7 @@ module.exports = function (api) {
       // TODO: move this to webpack defineplugin?
       'module-resolver',
       {
-        'extensions': ['.js', '.es6', '.mjs', '.cjs', '.json'],
+        'extensions': ['.tsx', '.ts', '.js', '.es6', '.mjs', '.cjs', '.json'],
          // stripExtensions: [],
         cwd: process.env.NIRV_APP_ROOT,
          root: ['.'],
