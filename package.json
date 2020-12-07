@@ -30,6 +30,7 @@
     "@babel/runtime-corejs3": "7.12.5",
     "resolve": "1.19.0",
     "source-map-support": "0.5.19",
+    "tsc": "^1.20150623.0",
     "yarn": "^1.22.10"
   },
   "devDependencies": {

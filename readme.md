@@ -54,3 +54,8 @@
   -- yarn install --focus # install a workspace packages deps and remove all symlinks
       - very useful for automating bundling of a package for deployment while still having symlinks in dev
       - running `yarn install` without the focus will return to their unfocused state
+
+
+
+# npm 
+  - had to change to my npm global dir to setup typescript https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally
