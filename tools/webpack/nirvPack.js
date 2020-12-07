@@ -30,6 +30,8 @@ const TerserPlugin = require("terser-webpack-plugin");
 // const { InjectManifest } = require('workbox-webpack-plugin'); // fails on webpack 5? verify for web
 
 
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const ForkTsCheckerNotifierWebpackPlugin = require('fork-ts-checker-notifier-webpack-plugin');
 
 
 const addPath = (p = '.') => path.resolve(env.NIRV_APP_ROOT, p);
@@ -175,8 +177,9 @@ module.exports = function ({
         cleanStaleWebpackAssets: ifProd,
         protectWebpackAssets: false,
       }),
-
-      new webpack.DefinePlugin(
+      new ForkTsCheckerWebpackPlugin(),
+      new ForkTsCheckerNotifierWebpackPlugin({ excludeWarnings: true }), // must come after the other fork plugin
+      new webpack.DefinePlugin(  
         // make these available in compiled code
         appEnv
       ),
@@ -215,12 +218,25 @@ module.exports = function ({
         //     fullySpecified: false // disable the behaviour
         //   }
         // },
-        
+
         // load all ts files
         {
           test: /\.tsx?$/,
           use: 'ts-loader',
           exclude: /node_modules/,
+          options: {
+            // disable type checker - we will use it in fork plugin
+            transpileOnly: true,
+            eslint: false,
+            async: true,
+            logger: 'console',
+            typescript: false, // using the forked plugin
+            extensions: {
+
+            }
+
+
+          }
         },
         {
           test: jsRegex,

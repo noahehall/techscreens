@@ -39,14 +39,14 @@ module.exports = function (api) {
   const plugins = [
   'const-enum', // must come efore transform typescript
 
-  [ 
+  // [ 
     // https://babeljs.io/docs/en/babel-plugin-transform-typescript
     // doesnt do type checking, disabled
     // went with ts-loader with webpack
-    '@babel/plugin-transform-typescript', {
-      allowDeclareFields: true
-    }
-  ],
+  //   '@babel/plugin-transform-typescript', {
+  //     allowDeclareFields: true
+  //   }
+  // ],
     'babel-plugin-replace-ts-export-assignment'
   [
     '@babel/plugin-transform-runtime', {
