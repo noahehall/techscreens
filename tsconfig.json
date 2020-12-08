@@ -24,7 +24,13 @@
     	"outDir": "li./b",
     	"resolveJsonModule": true,
     	"sourceMap": true,
-    	"rootDir": "./"
+    	"rootDir": "./",
+    	"baseUrl": ".",
+    	"paths": {
+	      "@com/*": ["components/*"],
+	      "@css/*": ["components/*.module.css"]
+	    }
+
     }
   }
 }

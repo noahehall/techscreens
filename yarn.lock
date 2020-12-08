@@ -2405,6 +2405,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"babel-plugin-config-module-resolver@npm:1.0.2":
+  version: 1.0.2
+  resolution: "babel-plugin-config-module-resolver@npm:1.0.2"
+  dependencies:
+    babel-plugin-module-resolver: ^3
+  checksum: ec876e13cc884996cb8d7be7f6688d7ebbcf4046142590e131db73ea0b9650c1378661b42f54afc97bf8dc66a2d96ebe459c89a91e37ae77bc1888ae90ceb5a9
+  languageName: node
+  linkType: hard
+
 "babel-plugin-dynamic-import-node@npm:2.3.3, babel-plugin-dynamic-import-node@npm:^2.3.3":
   version: 2.3.3
   resolution: "babel-plugin-dynamic-import-node@npm:2.3.3"
@@ -2437,6 +2446,19 @@ __metadata:
     reselect: ^4.0.0
     resolve: ^1.13.1
   checksum: ac50e01ef09f1dc506e250e852dcfb49c0cd0e7e5bf02b3f3d1de7c51ccda8bf34fa63bc9a698c098004a15d91efcc65517397ae90209c9c23b7778b83235ce3
+  languageName: node
+  linkType: hard
+
+"babel-plugin-module-resolver@npm:^3":
+  version: 3.2.0
+  resolution: "babel-plugin-module-resolver@npm:3.2.0"
+  dependencies:
+    find-babel-config: ^1.1.0
+    glob: ^7.1.2
+    pkg-up: ^2.0.0
+    reselect: ^3.0.1
+    resolve: ^1.4.0
+  checksum: 55d98a2240daddff925c0b354d8cc5b49971a7673d8046e8e854957003f172801e448acb6ea03c71a947c86709dd08e482d2c57ecbdd4e6423825b1de221040d
   languageName: node
   linkType: hard
 
@@ -4678,7 +4700,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"find-babel-config@npm:^1.2.0":
+"find-babel-config@npm:^1.1.0, find-babel-config@npm:^1.2.0":
   version: 1.2.0
   resolution: "find-babel-config@npm:1.2.0"
   dependencies:
@@ -4717,6 +4739,15 @@ __metadata:
     path-exists: ^2.0.0
     pinkie-promise: ^2.0.0
   checksum: cc15a62434c3f7f499d2f8c956aeeace97a8e87ad52ad78e156bd52e9c2acafcaad729356b564d0d57150b48017d0d3165ba2e790546550b3de8b7db256b883b
+  languageName: node
+  linkType: hard
+
+"find-up@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "find-up@npm:2.1.0"
+  dependencies:
+    locate-path: ^2.0.0
+  checksum: 9dedb89f936b572f7c9fda3f66ebe146b0000fe9ef16fad94a77c25ce9585962e910bb32c1e08bab9b423985ff20221d2af4b7e4130b27c0f5f60c1aad3f6a7f
   languageName: node
   linkType: hard
 
@@ -5085,7 +5116,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^7.0.0, glob@npm:^7.0.3, glob@npm:^7.1.1, glob@npm:^7.1.3, glob@npm:^7.1.4, glob@npm:^7.1.6":
+"glob@npm:^7.0.0, glob@npm:^7.0.3, glob@npm:^7.1.1, glob@npm:^7.1.2, glob@npm:^7.1.3, glob@npm:^7.1.4, glob@npm:^7.1.6":
   version: 7.1.6
   resolution: "glob@npm:7.1.6"
   dependencies:
@@ -6711,6 +6742,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"locate-path@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "locate-path@npm:2.0.0"
+  dependencies:
+    p-locate: ^2.0.0
+    path-exists: ^3.0.0
+  checksum: ee5a888d686f8d555ebfa6c4f6f3b7c5cdfa5f382dee17e0b3fde7456fc68301ddb6a79790a412659d1e067f2f58fd74c683b203fc20368deaed45fb985b4fda
+  languageName: node
+  linkType: hard
+
 "locate-path@npm:^3.0.0":
   version: 3.0.0
   resolution: "locate-path@npm:3.0.0"
@@ -7810,6 +7851,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"p-limit@npm:^1.1.0":
+  version: 1.3.0
+  resolution: "p-limit@npm:1.3.0"
+  dependencies:
+    p-try: ^1.0.0
+  checksum: 579cbd3d6c606058aa624c464e2cb3c4b56d04ed4cbafdb705633cbe62ba36d77ba2c4289023335ba382f4fbf32c15709465eea18a0e1547c5ebc4b887f2a7da
+  languageName: node
+  linkType: hard
+
 "p-limit@npm:^2.0.0, p-limit@npm:^2.2.0":
   version: 2.3.0
   resolution: "p-limit@npm:2.3.0"
@@ -7825,6 +7875,15 @@ __metadata:
   dependencies:
     yocto-queue: ^0.1.0
   checksum: 5301db6a34fc1fe3714ae562c100a0567d8c16ce9db800f547bbe75efc045c40cd74c4a4c893279975dcf15afc1217c8d2c93fe957a156a3a43d7cce98eaad2e
+  languageName: node
+  linkType: hard
+
+"p-locate@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "p-locate@npm:2.0.0"
+  dependencies:
+    p-limit: ^1.1.0
+  checksum: b6dabbd855fba9bfa74b77882f96d0eac6c25d9966e61ab0ed7bf3d19f2e3b766f290ded1aada1ac4ce2627217b00342cf7a1d36482bada59ba6789be412dad7
   languageName: node
   linkType: hard
 
@@ -7900,6 +7959,13 @@ __metadata:
   dependencies:
     p-finally: ^1.0.0
   checksum: 651609ddc70834fd048a59893cd1e46fcc24d6b9b09b3bfdc97a90c18ad2babd96fa03335e71494926620f7c48ea33fbd8a8d22895108637145ffdf86c7920f8
+  languageName: node
+  linkType: hard
+
+"p-try@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "p-try@npm:1.0.0"
+  checksum: 85739d77b3e9f6a52a8545f1adc53621fb5df4d6ef9b59a3f54f3f3159b45c4100d4e63128a1e790e9ff8ff8b86213ace314ff6d2d327c3edcceea18891baa42
   languageName: node
   linkType: hard
 
@@ -8181,6 +8247,15 @@ __metadata:
   dependencies:
     find-up: ^5.0.0
   checksum: 86f6ecee1787d8fe1606fd831f823f967c6ea0d760ce714af6afd2fec076ce71fbedcb57b339d93b84edf90ccdd81d4e6e2c10fcde21684ef3ffee5e05fd37dc
+  languageName: node
+  linkType: hard
+
+"pkg-up@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "pkg-up@npm:2.0.0"
+  dependencies:
+    find-up: ^2.1.0
+  checksum: 0a8fcbebf0f1aadc7a52c576352a698abef6c389cb00a0847db2d370d05d4c005f855e196d29618b088062f1394711ca6dadd232692ed225511d7e75a198d246
   languageName: node
   linkType: hard
 
@@ -8944,6 +9019,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"reselect@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "reselect@npm:3.0.1"
+  checksum: 55163bccc651cb32231e77bc0dd0d344778a41a15bb6cc4d2b5cf9af6f42180d20286037ce631493a18a3d90f5e163deebb1ff20bef9ba07dd136e467bb1dbf4
+  languageName: node
+  linkType: hard
+
 "reselect@npm:^4.0.0":
   version: 4.0.0
   resolution: "reselect@npm:4.0.0"
@@ -8981,7 +9063,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"resolve@1.19.0, resolve@^1.10.0, resolve@^1.13.1, resolve@^1.17.0, resolve@^1.3.2, resolve@^1.8.1, resolve@^1.9.0":
+"resolve@1.19.0, resolve@^1.10.0, resolve@^1.13.1, resolve@^1.17.0, resolve@^1.3.2, resolve@^1.4.0, resolve@^1.8.1, resolve@^1.9.0":
   version: 1.19.0
   resolution: "resolve@npm:1.19.0"
   dependencies:
@@ -8991,7 +9073,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"resolve@patch:resolve@1.19.0#builtin<compat/resolve>, resolve@patch:resolve@^1.10.0#builtin<compat/resolve>, resolve@patch:resolve@^1.13.1#builtin<compat/resolve>, resolve@patch:resolve@^1.17.0#builtin<compat/resolve>, resolve@patch:resolve@^1.3.2#builtin<compat/resolve>, resolve@patch:resolve@^1.8.1#builtin<compat/resolve>, resolve@patch:resolve@^1.9.0#builtin<compat/resolve>":
+"resolve@patch:resolve@1.19.0#builtin<compat/resolve>, resolve@patch:resolve@^1.10.0#builtin<compat/resolve>, resolve@patch:resolve@^1.13.1#builtin<compat/resolve>, resolve@patch:resolve@^1.17.0#builtin<compat/resolve>, resolve@patch:resolve@^1.3.2#builtin<compat/resolve>, resolve@patch:resolve@^1.4.0#builtin<compat/resolve>, resolve@patch:resolve@^1.8.1#builtin<compat/resolve>, resolve@patch:resolve@^1.9.0#builtin<compat/resolve>":
   version: 1.19.0
   resolution: "resolve@patch:resolve@npm%3A1.19.0#builtin<compat/resolve>::version=1.19.0&hash=3388aa"
   dependencies:
@@ -10107,6 +10189,7 @@ __metadata:
     "@types/source-map-support": ^0
     "@types/webpack": 4.41.25
     babel-loader: 8.2.2
+    babel-plugin-config-module-resolver: 1.0.2
     babel-plugin-dynamic-import-node: 2.3.3
     babel-plugin-lodash: 3.3.4
     babel-plugin-module-resolver: 4.0.0

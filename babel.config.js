@@ -51,6 +51,7 @@ module.exports = function (api) {
         version: pkg.dependencies['@babel/runtime-corejs3']
       }
     ],
+    'config-module-resolver',
     [
       // TODO: move this to webpack defineplugin?
       'module-resolver',
