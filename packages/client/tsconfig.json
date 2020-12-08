@@ -1,0 +1,13 @@
+
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+
+    "paths": {
+      "@client/*": ["./*"],
+      "@client/bff/*": ["./src/bff/*"],
+      "@client/ui/*": ["./src/ui/*"],
+    }
+  },
+  "include": ["src", "tools", "dev.js"]
+}

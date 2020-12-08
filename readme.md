@@ -60,3 +60,13 @@
 # npm 
   - had to change to my npm global dir to setup typescript https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally
   - tyescript config: https://github.com/microsoft/TypeScript-Babel-Starter/blob/master/tsconfig.json
+  - [another typescript plugin](https://github.com/davestewart/alias-hq)
+
+
+  # steal this shit
+  https://github.com/SolidZORO/leaa/blob/master/packages/leaa-api/package.json
+  "tsc-check": "tsc -v && tsc --noEmit",
+    "---------------------------------------------------------------------- DEV ----": "----",
+    "dev-tsnodedev": "NODE_ENV=development ts-node-dev --respawn --transpile-only --ignore-watch node_modules -r tsconfig-paths/register ./src/main.ts",
+    "dev": "NODE_ENV=development yarn dev-tsnodedev",
+    "seed-dev": "NODE_ENV=development ts-node-dev --respawn --transpile-only -r tsconfig-paths/register src/modules/v1/seed/seed.command.ts",

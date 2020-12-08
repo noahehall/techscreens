@@ -1,12 +1,23 @@
 {
   "compilerOptions": {
-	"include": ["./packages", "./"],
-  	"exclude": ["node_modules", "test", "lib"],
+	"include": [
+		"packages/*/**/*", 
+		"typings/*"
+	],
+  	"exclude": [
+  		"node_modules",
+  		".cache",
+  		"dist",
+  		"test", 
+  		"lib"
+  	],
   	"extends": "@tsconfig/recommended/tsconfig.json",
     "compilerOptions": {
+    	"isolatedModules": true,
     	"skipLibCheck": true,
     	"noEmit": true,
 		"pretty": true,
+		"emitDeclarationOnly": true,
 	  	"esModuleInterop": true,
 	  	"forceConsistentCasingInFileNames": true,
 	  	"moduleResolution": "node",
@@ -16,6 +27,7 @@
 	    "jsx": "react",
 	    "noImplicitAny": true,
 	    "target": "esnext",
+	    "importHelpers": true,
     	"allowSyntheticDefaultImports": true, 
     	"composite": true,
     	"declaration": true,
@@ -27,8 +39,7 @@
     	"rootDir": "./",
     	"baseUrl": ".",
     	"paths": {
-	      "@com/*": ["components/*"],
-	      "@css/*": ["components/*.module.css"]
+	      "@nirv": ["packages/*/"],
 	    }
 
     }

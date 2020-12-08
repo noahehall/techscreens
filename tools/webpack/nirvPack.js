@@ -231,6 +231,16 @@ module.exports = function ({
     module: {
       ...(options.module || {}),
       rules: [
+        {
+          test: /\.js$/,
+          enforce: "pre",
+          use: [
+            {
+              loader: "source-map-loader",
+              options: {        }
+            }
+          ]
+        },
         // {
         //   test: /\.m?js$/,
         //   resolve: {

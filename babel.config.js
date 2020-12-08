@@ -51,7 +51,7 @@ module.exports = function (api) {
         version: pkg.dependencies['@babel/runtime-corejs3']
       }
     ],
-    'config-module-resolver',
+    'config-module-resolver', // copies paths from  tsconfig
     [
       // TODO: move this to webpack defineplugin?
       'module-resolver',
@@ -69,14 +69,6 @@ module.exports = function (api) {
         }
       },
     ],
-
-         // ['@babel/plugin-transform-modules-commonjs', {
-         //   'allowTopLevelThis': true,
-         //    'loose': false,
-         //    'lazy': true,
-         //    // noInterop: true,
-         //    strict: true,
-         // }],
 
 
     // 'lodash',
