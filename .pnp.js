@@ -589,6 +589,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "npm:7.0.6"
       ],
       [
+        "@types/json5",
+        "npm:0.0.29"
+      ],
+      [
         "@types/keyv",
         "npm:3.1.1"
       ],
@@ -3565,6 +3569,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "npm:1.20150623.0"
       ],
       [
+        "tsconfig-paths",
+        "npm:3.9.0"
+      ],
+      [
+        "tsconfig-paths-webpack-plugin",
+        "npm:3.3.0"
+      ],
+      [
         "tslib",
         "npm:2.0.3"
       ],
@@ -3909,6 +3921,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["thread-loader", "virtual:6955602a5e04616f1bf99cb89258efea45317caef161f2237133d6bae9ba7d42ca4e2988b03189ef2e875b8a7c65b561acc8c1512300f1f54cd5b8ff9fd47e3b#npm:3.0.1"],
             ["ts-loader", "virtual:6955602a5e04616f1bf99cb89258efea45317caef161f2237133d6bae9ba7d42ca4e2988b03189ef2e875b8a7c65b561acc8c1512300f1f54cd5b8ff9fd47e3b#npm:8.0.11"],
             ["tsc", "npm:1.20150623.0"],
+            ["tsconfig-paths-webpack-plugin", "npm:3.3.0"],
             ["typescript", "patch:typescript@npm%3A4.1.2#builtin<compat/typescript>::version=4.1.2&hash=cc6730"],
             ["url-loader", "virtual:6955602a5e04616f1bf99cb89258efea45317caef161f2237133d6bae9ba7d42ca4e2988b03189ef2e875b8a7c65b561acc8c1512300f1f54cd5b8ff9fd47e3b#npm:4.1.1"],
             ["webpack", "virtual:6955602a5e04616f1bf99cb89258efea45317caef161f2237133d6bae9ba7d42ca4e2988b03189ef2e875b8a7c65b561acc8c1512300f1f54cd5b8ff9fd47e3b#npm:5.10.0"],
@@ -6681,6 +6694,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "../../.yarn/global/cache/@types-json-schema-npm-7.0.6-b307979e18-7.zip/node_modules/@types/json-schema/",
           "packageDependencies": [
             ["@types/json-schema", "npm:7.0.6"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/json5", [
+        ["npm:0.0.29", {
+          "packageLocation": "../../.yarn/global/cache/@types-json5-npm-0.0.29-f63a7916bd-7.zip/node_modules/@types/json5/",
+          "packageDependencies": [
+            ["@types/json5", "npm:0.0.29"]
           ],
           "linkType": "HARD",
         }]
@@ -15943,6 +15965,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["is-utf8", "npm:0.2.1"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:3.0.0", {
+          "packageLocation": "../../.yarn/global/cache/strip-bom-npm-3.0.0-71e8f81ff9-7.zip/node_modules/strip-bom/",
+          "packageDependencies": [
+            ["strip-bom", "npm:3.0.0"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["strip-comments", [
@@ -16438,6 +16467,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["thread-loader", "virtual:6955602a5e04616f1bf99cb89258efea45317caef161f2237133d6bae9ba7d42ca4e2988b03189ef2e875b8a7c65b561acc8c1512300f1f54cd5b8ff9fd47e3b#npm:3.0.1"],
             ["ts-loader", "virtual:6955602a5e04616f1bf99cb89258efea45317caef161f2237133d6bae9ba7d42ca4e2988b03189ef2e875b8a7c65b561acc8c1512300f1f54cd5b8ff9fd47e3b#npm:8.0.11"],
             ["tsc", "npm:1.20150623.0"],
+            ["tsconfig-paths-webpack-plugin", "npm:3.3.0"],
             ["typescript", "patch:typescript@npm%3A4.1.2#builtin<compat/typescript>::version=4.1.2&hash=cc6730"],
             ["url-loader", "virtual:6955602a5e04616f1bf99cb89258efea45317caef161f2237133d6bae9ba7d42ca4e2988b03189ef2e875b8a7c65b561acc8c1512300f1f54cd5b8ff9fd47e3b#npm:4.1.1"],
             ["webpack", "virtual:6955602a5e04616f1bf99cb89258efea45317caef161f2237133d6bae9ba7d42ca4e2988b03189ef2e875b8a7c65b561acc8c1512300f1f54cd5b8ff9fd47e3b#npm:5.10.0"],
@@ -16781,6 +16811,31 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "../../.yarn/global/cache/tsc-npm-1.20150623.0-7c7f3fa5d2-7.zip/node_modules/tsc/",
           "packageDependencies": [
             ["tsc", "npm:1.20150623.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["tsconfig-paths", [
+        ["npm:3.9.0", {
+          "packageLocation": "../../.yarn/global/cache/tsconfig-paths-npm-3.9.0-92dcbdee37-7.zip/node_modules/tsconfig-paths/",
+          "packageDependencies": [
+            ["tsconfig-paths", "npm:3.9.0"],
+            ["@types/json5", "npm:0.0.29"],
+            ["json5", "npm:1.0.1"],
+            ["minimist", "npm:1.2.5"],
+            ["strip-bom", "npm:3.0.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["tsconfig-paths-webpack-plugin", [
+        ["npm:3.3.0", {
+          "packageLocation": "../../.yarn/global/cache/tsconfig-paths-webpack-plugin-npm-3.3.0-db63d39e3c-7.zip/node_modules/tsconfig-paths-webpack-plugin/",
+          "packageDependencies": [
+            ["tsconfig-paths-webpack-plugin", "npm:3.3.0"],
+            ["chalk", "npm:2.4.2"],
+            ["enhanced-resolve", "npm:4.3.0"],
+            ["tsconfig-paths", "npm:3.9.0"]
           ],
           "linkType": "HARD",
         }]

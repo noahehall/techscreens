@@ -26,6 +26,9 @@ const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
 
+
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+
 // this should be in web config
 // const { InjectManifest } = require('workbox-webpack-plugin'); // fails on webpack 5? verify for web
 
@@ -127,8 +130,17 @@ module.exports = function ({
         moment$: 'moment/moment.js',
         ...alias
       },
+      
       ...overides,
 
+      plugins: [
+        new TsconfigPathsPlugin({
+            configFile: `${process.env.NIRV_APP_ROOT}/tsconfig.json`,
+            logLevel: 'info',
+            extensions: ['.ts', '.tsx'],
+            mainFields: ["browser", "main"],,
+          })
+        ]
       // think about this
       // mainFields: options.target === 'web' || options.target === 'webworker'
       //   ? ['module', 'browser', 'main']
