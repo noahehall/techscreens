@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 // https://github.com/expressjs/express/blob/master/examples/multi-router/index.js
 let server;
 if (!module.parent) {
-  server = app.listen(process.env.API_PORT, () => console.log('\n\n api/routes/index.js', process.env.API_PORT));
+  server = app.listen(process.env.NIRV_API_PORT, () => console.log('\n\n api/routes/index.js', process.env.NIRV_API_PORT));
 }
 
 

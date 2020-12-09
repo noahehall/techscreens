@@ -5,9 +5,10 @@
 
 const babelOpts = require('./babelOpts.js');
 
+
 module.exports = function (api) {
   const isDev = api.env() !== 'production';
-
+  const isProd = !isDev;
 
   // concat with child configs
   const presets = [
@@ -17,10 +18,10 @@ module.exports = function (api) {
         targets: {
           browsers: 'last 2 versions, > 5%'
         },
-        // import corejs polyfils as used by each file
         useBuiltIns: 'usage',
-        // enable
         corejs: babelOpts.corejs,
+        modules: 'auto',
+        bugfixes: true,
       }
     ],
 
@@ -37,12 +38,12 @@ module.exports = function (api) {
     '@babel/plugin-transform-react-constant-elements',
     '@babel/plugin-transform-react-inline-elements',
     ['babel-plugin-styled-components', {
-      minify: false,
+      displayName: isDev,
+      fileName: isDev,
+      minify: isProd,
+      pure: isProd,
       srr: false,
-      transpileTemplateLiterals: false,
-      displayName: true,
-      fileName: true,
-      pure: false,
+      transpileTemplateLiterals: isProd,
     }],
   ];
 

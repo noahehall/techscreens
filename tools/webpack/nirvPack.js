@@ -24,18 +24,22 @@ const webpackNodeExternals = require('webpack-node-externals')
 const path = require('path');
 const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
 
 // this should be in web config
 // const { InjectManifest } = require('workbox-webpack-plugin'); // fails on webpack 5? verify for web
 
 
-const env = process.env;
-const addPath = (p = '.') => path.resolve(env.appRoot, p);
+
+
+const addPath = (p = '.') => path.resolve(env.NIRV_APP_ROOT, p);
+const jsRegex = /\.(js|cjs|mjs|jsx)$/;
 
 function isR (name) {
   if (typeof name === 'undefined') throw `${name} is required`;
 }
 
+const env = process.env;
 
 module.exports = function ({
   pkg = rootPkg,
@@ -51,39 +55,50 @@ module.exports = function ({
   plugins = [],
   resolve = {
     alias: {},
-    modules: [process.env.appRoot, 'node_modules'],
+    modules: [process.env.NIRV_APP_ROOT, 'node_modules'],
     preferRelative: true,
     extensions: ['*', '.js', '.mjs', '.cjs', '.jsx', '.json'],
   }, // https://github.com/webpack/webpack/issues/981
 
   mode = env.NODE_ENV === 'development' ? 'development' : 'production',
-  externals = true, //use to be removeExternals, ensure consumers are updated
+  // externals = true, //use to be removeExternals, ensure consumers are updated
   target = 'node',
 
   ...providedOptions
 }) {
   // child functions able to use the consumer provided params
 
+  const ifDev = mode !== 'production';
+  const ifProd = !ifDev;
+
+
+  const appEnv = {
+          'process.env.NIRV_APP_DIST': JSON.stringify(env['NIRV_APP_DIST']),
+          'process.env.NIRV_APP_ROOT': JSON.stringify(env['NIRV_APP_ROOT']),
+          'process.env.NIRV_APP_TOOLS': JSON.stringify(env['NIRV_APP_TOOLS']),
+          'process.env.NIRV_APP_SRC': JSON.stringify(env['NIRV_APP_SRC']),
+          'process.env.NIRV_BFF_HOST': JSON.stringify(env['NIRV_BFF_HOST']),
+          'process.env.NIRV_BFF_PORT': JSON.stringify(env['NIRV_BFF_PORT']),
+          'process.env.NIRV_API_HOST': JSON.stringify(env['NIRV_API_HOST']),
+          'process.env.NIRV_API_PORT': JSON.stringify(env['NIRV_API_PORT']),
+        };
+
+
   // each output bundle output.path + filename
-  const filename = mode === 'production'
-    ? '[name].[contentHash].bundle.js'
+  const filename = ifProd
+    ? '[name].[contenthash:8].bundle.js'
     : '[name].bundle.js';
   // each non-initial chunk files output.path + chunkFilename
-  const chunkFilename = 'production'
-    ? '[name].[contentHash].chunk.bundle.js'
+  const chunkFilename = ifProd
+    ? '[name].[contenthash:8].chunk.bundle.js'
     : '[name].chunk.js'
 
-
-  switch (target) {
-    case 'web': {
-      externals = false;
-    }
-  }
 
   // sets the final output
   const getOutput = (useTarget = target) => ({
     publicPath: publicPath,
-    path: `${env.appDist}/${providedOptions.name}`,
+    path: `${env.NIRV_APP_DIST}/${providedOptions.name}`,
+     pathinfo: ifDev,
     filename,
     chunkFilename,
     // library: 'poop', depends on libraryTarget value
@@ -91,6 +106,7 @@ module.exports = function ({
       useTarget === 'web'
         ? {
             libraryTarget: 'umd',
+            globalObject: 'this',
           }
         : {
             libraryTarget: 'commonjs2', // https://github.com/webpack/webpack/issues/1114
@@ -100,15 +116,6 @@ module.exports = function ({
     // only useful for libraries
     // globalObject: "typeof self !== 'undefined' ? self : this",
   });
-
-  // TODO
-  // externals({ modulesFromFile: true })
-  // externals({ mmodulesDir: __dirname })
-  const getExternals = (shouldRemove = externals) => (
-    shouldRemove
-      ? [...peerDeps.concat(deps), webpackNodeExternals({ modulesFromFile: true })]
-      : peerDeps
-  );
 
   const getResolve = (useResolve = resolve) => {
     const { alias = {}, ...overides } = resolve;
@@ -127,30 +134,28 @@ module.exports = function ({
     };
   }
 
-  const ifDev = mode !== 'development';
-  const ifProd = mode === 'production';
-
 
   // default options
   const options = {
+      bail: ifProd,
       target,
-      devtool: ifProd ? 'cheap-source-map' : 'eval-cheap-module-source-map',
+      devtool: ifProd ? 'source-map' : 'eval-cheap-module-source-map',
       mode,
-      context: env.appSrc,
+      context: env.NIRV_APP_SRC,
       entry,
   };
 
-  // overrides for specific envs
   switch (target) {
     case 'node': {
-      // options.externals = true;
-
+      options.externals = [webpackNodeExternals({
+        modulesFromFile: {
+          fileName: process.env.NIRV_APP_ROOT + '/package.json'
+        }
+      })]
       break;
     }
-
     case 'web': {
-      // options.webworker = true;
-      // options.externals = false;
+      // externals = false;
 
       break;
     }
@@ -161,26 +166,20 @@ module.exports = function ({
   return {
     ...providedOptions,
     ...options,
-    cache: false,
 
     // further extend  options
     output: getOutput(options.target, output),
-    externals: getExternals(options.externals),
     resolve: getResolve(),
     plugins: [
-      new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
-
-      new webpack.DefinePlugin({
-        // make these available in compiled code
-        appEnv: {
-          CLIENT_HOST: JSON.stringify(env['CLIENT_HOST']),
-          CLIENT_PORT: JSON.stringify(env['CLIENT_PORT']),
-          BFF_HOST: JSON.stringify(env['BFF_HOST']),
-          BFF_PORT: JSON.stringify(env['BFF_PORT']),
-          API_HOST: JSON.stringify(env['API_HOST']),
-          API_PORT: JSON.stringify(env['API_PORT']),
-        },
+      new CleanWebpackPlugin({
+        cleanStaleWebpackAssets: ifProd,
+        protectWebpackAssets: false,
       }),
+
+      new webpack.DefinePlugin(
+        // make these available in compiled code
+        appEnv
+      ),
 
       // ...(
       //   ifDev
@@ -217,15 +216,22 @@ module.exports = function ({
         //   }
         // },
         {
-          test: /\.(js|cjs)$/,
-          exclude: /node_modules/,
-          // include: [ env.appSrc ],
-          use: {
-            loader: 'babel-loader',
-            options: {
-              rootMode: 'upward'
+          test: jsRegex,
+          exclude: [
+            /node_modules/,
+            /node_modules[\\\/]core-js/,
+          ],
+           // include: [ env.NIRV_APP_SRC ],
+          use: [
+            'thread-loader',
+            {
+              loader: 'babel-loader',
+              options: {
+                rootMode: 'upward',
+                 cacheDirectory: true,
+              },
             }
-          },
+          ],
         },
         {
           // Preprocess our own .css files
@@ -286,7 +292,66 @@ module.exports = function ({
         ...(options.module && options.module.rules || []),
       ].filter(e => e)
     },
-    optimization,
+    optimization: {
+      minimize: ifProd,
+      minimizer: [
+        new TerserPlugin({
+          test: jsRegex,
+          parallel: true,
+          extractComments: false,
+          terserOptions: {
+             ecma: 5,
+             keep_classnames: false,
+             keep_fnames: false,
+             nameCache: null,
+
+            format: {
+              comments: false,
+            },
+
+
+            parse: {},
+            compress: {
+               arrows: true,
+               arguments: false,
+               booleans: true,
+               collapse_vars: false,
+               comparisons: false,
+               dead_code: true,
+               drop_console: false,
+               keep_classnames: false,
+               keep_fnames: false,
+               keep_infinity: true,
+            },
+            mangle: {
+               eval: false,
+               keep_classnames: false,
+               keep_fnames: false,
+               properties: false,
+
+            },
+            format: {
+               ecma: 5,
+               comments: false,
+            },
+          },
+        }),
+      ],
+      moduleIds: 'deterministic',
+      runtimeChunk: 'single',
+      splitChunks: {
+        cacheGroups: {
+          chunks: 'all',
+          vendors: {
+            name: 'vendors',
+            test: /[\\/]node_modules[\\/]/,
+            reuseExistingChunk: true,
+            chunks: 'all'
+          }
+        }
+      },
+      ...optimization
+    },
     performance,
   }
 }

@@ -1,55 +1,67 @@
 {
-  "name": "app",
-  "version": "1.0.0",
+  "name": "techscreens",
+  "version": "1.1.0",
+  "private": true,
+  "useWorkspaces": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
   "description": "fullstack starter kit",
   "config": {
     "s": "all"
   },
   "scripts": {
+    "check:peers": "yarn explain peer-requirements",
+    "check:res": "yarn dlx @yarnpkg/doctor",
     "test": "echo \"Error: no test specified\" && exit 1",
     "runupgrade": "yarn upgrade-interactive --latest",
-    "start": "NODE_ENV=development nodemon --exec node ./main.js"
+    "prod": "NODE_ENV=production node ./main.js",
+    "dev:all": "./tools/bash/devall.sh"
   },
   "author": "@noahedwardhall",
   "license": "F.U",
+  "resolutions": {
+    "npm": "6.14.9",
+    "fsevents": "2.2.1"
+  },
   "dependencies": {
     "@babel/runtime-corejs3": "7.12.5",
-    "dotenv": "8.2.0",
-    "express": "4.17.1",
-    "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "resolve": "1.19.0",
+    "yarn": "^1.22.10"
   },
   "devDependencies": {
-    "@babel/core": "7.12.3",
+    "@babel/cli": "7.12.8",
+    "@babel/core": "7.12.9",
     "@babel/node": "7.12.6",
     "@babel/plugin-proposal-class-properties": "7.12.1",
     "@babel/plugin-proposal-decorators": "7.12.1",
     "@babel/plugin-proposal-export-default-from": "7.12.1",
     "@babel/plugin-proposal-nullish-coalescing-operator": "7.12.1",
     "@babel/plugin-proposal-optional-catch-binding": "7.12.1",
-    "@babel/plugin-proposal-optional-chaining": "7.12.1",
+    "@babel/plugin-proposal-optional-chaining": "7.12.7",
     "@babel/plugin-proposal-private-methods": "7.12.1",
     "@babel/plugin-proposal-throw-expressions": "7.12.1",
     "@babel/plugin-syntax-dynamic-import": "7.8.3",
     "@babel/plugin-transform-modules-commonjs": "7.12.1",
-    "@babel/plugin-transform-react-constant-elements": "^7.12.1",
+    "@babel/plugin-transform-react-constant-elements": "7.12.1",
     "@babel/plugin-transform-react-inline-elements": "7.12.1",
     "@babel/plugin-transform-runtime": "7.12.1",
-    "@babel/preset-env": "7.12.1",
-    "@babel/preset-react": "7.12.5",
-    "babel-loader": "8.2.1",
+    "@babel/preset-env": "7.12.7",
+    "@babel/preset-react": "7.12.7",
+    "@babel/register": "7.12.1",
+    "@babel/traverse": "7.12.9",
+    "babel-loader": "8.2.2",
     "babel-plugin-dynamic-import-node": "2.3.3",
     "babel-plugin-lodash": "3.3.4",
     "babel-plugin-module-resolver": "4.0.0",
-    "babel-plugin-styled-components": "1.11.1",
     "babel-plugin-tailcall-optimization": "2.0.0",
     "babel-plugin-transform-export-extensions": "6.22.0",
-    "babel-watch": "7.0.0",
     "circular-dependency-plugin": "5.2.2",
     "clean-webpack-plugin": "3.0.0",
     "css-loader": "5.0.1",
     "file-loader": "6.2.0",
-    "hmr-filter-webpack-plugin": "1.0.0",
     "html-loader": "1.3.2",
     "html-webpack-plugin": "4.5.0",
     "image-webpack-loader": "7.0.1",
@@ -57,16 +69,24 @@
     "minimist": "1.2.5",
     "nodemon": "2.0.6",
     "null-loader": "4.0.1",
-    "script-ext-html-webpack-plugin": "2.1.5",
     "style-loader": "2.0.0",
-    "svg-url-loader": "6.0.0",
+    "stylelint": "13.8.0",
+    "stylelint-config-recommended": "3.0.0",
+    "stylelint-config-styled-components": "0.1.1",
+    "stylelint-processor-styled-components": "1.10.0",
+    "supports-color": "8.0.0",
+    "svg-url-loader": "7.1.1",
+    "terser-webpack-plugin": "5.0.3",
+    "thread-loader": "3.0.1",
     "url-loader": "4.1.1",
-    "webpack": "5.4.0",
-    "webpack-bundle-analyzer": "4.1.0",
+    "webpack": "5.10.0",
+    "webpack-bundle-analyzer": "4.2.0",
     "webpack-cli": "4.2.0",
     "webpack-dev-middleware": "4.0.2",
     "webpack-hot-middleware": "2.25.0",
-    "webpack-node-externals": "2.5.2",
-    "workbox-webpack-plugin": "5.1.4"
+    "webpack-node-externals": "2.5.2"
+  },
+  "optionalDependencies": {
+    "fsevents": "2.2.1"
   }
 }
