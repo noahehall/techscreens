@@ -6,7 +6,6 @@
 const babelOpts = require('./babelOpts.js');
 
 module.exports = function (api) {
-
   const presets = [
     [
       // https://babeljs.io/docs/en/babel-preset-env
@@ -26,12 +25,11 @@ module.exports = function (api) {
   ];
 
   const plugins = [
-     // ["dynamic-import-node", { "noInterop": true }]
+    'source-map-support',
   ];
 
-
   return {
-
+    sourceMaps: process.env.NODE_ENV === 'development',
     plugins,
     presets,
   }

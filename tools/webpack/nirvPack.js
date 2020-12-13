@@ -26,10 +26,15 @@ const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
 
+
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+
 // this should be in web config
 // const { InjectManifest } = require('workbox-webpack-plugin'); // fails on webpack 5? verify for web
 
 
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const ForkTsCheckerNotifierWebpackPlugin = require('fork-ts-checker-notifier-webpack-plugin');
 
 
 const addPath = (p = '.') => path.resolve(env.NIRV_APP_ROOT, p);
@@ -57,7 +62,7 @@ module.exports = function ({
     alias: {},
     modules: [process.env.NIRV_APP_ROOT, 'node_modules'],
     preferRelative: true,
-    extensions: ['*', '.js', '.mjs', '.cjs', '.jsx', '.json'],
+    extensions: ['*', '.ts', '.tsx', '.js', '.mjs', '.cjs', '.jsx', '.json'],
   }, // https://github.com/webpack/webpack/issues/981
 
   mode = env.NODE_ENV === 'development' ? 'development' : 'production',
@@ -125,8 +130,17 @@ module.exports = function ({
         moment$: 'moment/moment.js',
         ...alias
       },
+      
       ...overides,
 
+      plugins: [
+        new TsconfigPathsPlugin({
+            configFile: `${process.env.NIRV_APP_ROOT}/tsconfig.json`,
+            logLevel: 'info',
+            extensions: ['.ts', '.tsx'],
+            mainFields: ["browser", "main"],,
+          })
+        ]
       // think about this
       // mainFields: options.target === 'web' || options.target === 'webworker'
       //   ? ['module', 'browser', 'main']
@@ -175,8 +189,16 @@ module.exports = function ({
         cleanStaleWebpackAssets: ifProd,
         protectWebpackAssets: false,
       }),
-
-      new webpack.DefinePlugin(
+      new ForkTsCheckerWebpackPlugin({
+        typescript: {
+          diagnosticOptions: {
+            semantic: true,
+            syntactic: true,
+          },
+        },
+      }),
+      new ForkTsCheckerNotifierWebpackPlugin({ excludeWarnings: true }), // must come after the other fork plugin
+      new webpack.DefinePlugin(  
         // make these available in compiled code
         appEnv
       ),
@@ -209,12 +231,23 @@ module.exports = function ({
     module: {
       ...(options.module || {}),
       rules: [
+        {
+          test: /\.js$/,
+          enforce: "pre",
+          use: [
+            {
+              loader: "source-map-loader",
+              options: {        }
+            }
+          ]
+        },
         // {
         //   test: /\.m?js$/,
         //   resolve: {
         //     fullySpecified: false // disable the behaviour
         //   }
         // },
+
         {
           test: jsRegex,
           exclude: [

@@ -5,6 +5,7 @@
 *.sublime-project
 *.sublime-workspace
 *parcel*
+.logs
 .DS_Store
 .env
 .idea
@@ -18,9 +19,10 @@ npm-debug.log
 stats.json
 
 # yarn berry
-**.yarn/
+*.yarn/
 !.pnp.*
 !.yarn/releases
+!.yarn/plugins
 !.yarn/sdks
 !.yarn/versions
 !*/build-state.yml

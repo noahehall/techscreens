@@ -1,0 +1,47 @@
+{
+  "compilerOptions": {
+	"include": [
+		"packages/*/**/*", 
+		"typings/*"
+	],
+  	"exclude": [
+  		"node_modules",
+  		".cache",
+  		"dist",
+  		"test", 
+  		"lib"
+  	],
+  	"extends": "@tsconfig/recommended/tsconfig.json",
+    "compilerOptions": {
+    	"isolatedModules": true,
+    	"skipLibCheck": true,
+    	"noEmit": true,
+		"pretty": true,
+		"emitDeclarationOnly": true,
+	  	"esModuleInterop": true,
+	  	"forceConsistentCasingInFileNames": true,
+	  	"moduleResolution": "node",
+	  	"removeComments": true,
+	  	"strict": true,
+	    "allowJs": true,
+	    "jsx": "react",
+	    "noImplicitAny": true,
+	    "target": "esnext",
+	    "importHelpers": true,
+    	"allowSyntheticDefaultImports": true, 
+    	"composite": true,
+    	"declaration": true,
+    	"declarationMap": true,
+    	"module": "commonjs",
+    	"outDir": "li./b",
+    	"resolveJsonModule": true,
+    	"sourceMap": true,
+    	"rootDir": "./",
+    	"baseUrl": ".",
+    	"paths": {
+	      "@nirv": ["packages/*/"],
+	    }
+
+    }
+  }
+}
